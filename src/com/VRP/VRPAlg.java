@@ -78,9 +78,12 @@ public class VRPAlg {
                 double costOfCar = c[cars].getTotalCost();
                 //We multiply cost by 2 to take in account the car returning to the depot.
                 c[cars].setTotalCost(costOfCar + (cost * 2));
+                //If car was filled, we reset the capacity, set the destination back to the depot to collect other packages..
+                //..and we move on to the next car
                 if (!ok) {
                     c[cars].setCapacity(c[cars].getOriginalCapacity());
                     cars++;
+                    //Go back to the first car if we are at the last one
                     if (cars == numberOfCars) cars = 0;
                     Package p = new Package();
                     p.setDestination(d[0]);
