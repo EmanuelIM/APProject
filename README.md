@@ -28,7 +28,7 @@ The algorithm uses an initial temperature that gradually cools over time, restri
 The neighbor of a candidate solution is defined as the minimum of the inverse, insert and swap operators.
 - Inverse: This operator reverses the order of the numbers (destinations) in our original permutation between two random positions, i and j.
 - Insert : This operator moves the destination in the randomly chosen position j to the randomly chosen position i.
-- Swap : This operator swaps the city from the randomly chosen position i with the city on the randomly chosen position j
+- Swap : This operator swaps the destination from the randomly chosen position i with the destination on the randomly chosen position j
 
 These operators are applied to every candidate solution that we get. The cost of the edges between the nodes chosen is calculated, then the smallest of the three is compared with the current solution.
 
