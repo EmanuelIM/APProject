@@ -2,7 +2,7 @@
 
 ## Info about the project
 ###### Team formed by :
-* Iacob Marcel-Emanuel (2B4) - responsible for elaborating the algorithm for solving the VRP
+* Iacob Marcel-Emanuel (2B4) - responsible for implementing the algorithm for solving the VRP
 * Logofatu Ionut-Nicusor (2B4) - responsible for developing the desktop interface
 
 Project for Advanced Programming Laboratory (2020 - 2021), Faculty of Computer Science Iasi  
