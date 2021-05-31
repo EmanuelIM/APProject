@@ -16,7 +16,7 @@ It generalises the well-known travelling salesman problem (TSP), which is a well
 We are given a number n of vehicles, each one of them having a limited capacity (measurable by weight in our case), and m destinations, each one of them having zero, one or more packages with varying weights.
 Having the coordinates for each destination (in euclidean 2D distance), we wish to determine the path each vehicle should take in order to deliver all the packages and have the minimal cost for the company.
 
-## Simulated Annealing Algorithm (used for TSP)
+## Simulated Annealing (SA) Algorithm (used for TSP)
 Firstly, we should talk about Simulated Annealing.
 Simulated annealing can be used for very hard computational optimization problems where exact algorithms fail; even though it usually achieves an approximate solution to the global minimum, it could be enough for many practical problems. 
 
@@ -41,12 +41,13 @@ These operators are applied to every candidate solution that we get. The cost of
 ## Proposed solution:
 Using the aforementioned algorithm, we can implement it in our VRP algorithm so it can help us solve it.
 Here are the steps simply explained:
-- We start with the first car
-- Using TSP, we determine the shortest path it can take from the depot to all other destinations (and its cost).
+- We start with the first car.
+- Using TSP, we determine the shortest path it can take from the depot (this is destination 1 at all times) to all other destinations (and its cost).
 - We fit in as many packages as possible for the destinations in the car's path.
-- We remove the destinations which have all the packages delivered 
-- The cost of this trip will be equal to the cost of visiting all the possible destination times two (counting returning to the depot to get other packages)
-- We proceed with the next car
+- We remove the destinations which have all the packages delivered.
+- The cost of this trip will be equal to the cost of visiting all the possible destination times two (counting returning to the depot to get other packages).
+- We proceed with the next car.
 - Using TSP, we determine the shortest path it can take from the depot to all other unfinished destinations.
-- We cycle through all cars until all the packages are delivered
-This solution guarantees that the cars will take the shortest path possible at any time.
+- We cycle through all cars until all the packages are delivered.  
+
+This solution guarantees that the cars will take the shortest path possible (determined by SA) at any time.
