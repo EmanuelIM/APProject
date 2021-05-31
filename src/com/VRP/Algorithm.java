@@ -5,10 +5,12 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Algorithm {
+    //Returns the euclidean distance between 2 points in 2D
     double euclideanDistance(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
 
+    //Calculates the cost of a trip through a number of destinations
     double calculate_cost(double[][] dist, ArrayList<Integer> permutation, int dimension) {
         double S = 0;
         for (int i = 0; i <= dimension - 2; ++i) {
@@ -18,6 +20,7 @@ public class Algorithm {
         return S;
     }
 
+    //Reverses an array between two randomly chosen points
     void reverseArray(ArrayList<Integer> permutation, int dimension) {
         int firstPosition, secondPosition;
         Random rand = new Random();
@@ -36,6 +39,8 @@ public class Algorithm {
         }
         Collections.reverse(permutation.subList(firstPosition, secondPosition));
     }
+
+    //Generates 2 random positions, takes the element from the second position and inserts it in the first one
     void insertInArray(ArrayList<Integer> permutation, int dimension) {
         int firstPosition, secondPosition;
         Random rand = new Random();
@@ -56,6 +61,7 @@ public class Algorithm {
         permutation.remove(secondPosition + 1);
     }
 
+    //Swaps two randomly chosen elements in our array
     void swapInArray(ArrayList<Integer> permutation, int dimension){
         int firstPosition, secondPosition;
         Random rand = new Random();
@@ -75,6 +81,8 @@ public class Algorithm {
         Collections.swap(permutation,firstPosition,secondPosition);
     }
 
+    //Simulated annealing algorithm for the TSP problem
+    //Generates a random candidate solution and uses Wang's greedy operator to find better ones
     ArrayList<Integer> simulated_annealing(double[][] dist, int dimension, ArrayList<Integer> finishedList) {
         double temperature = 100.0;
         double minimumDistance, minimumDistanceNeighbor, minimumDistanceSwapped, minimumDistanceInversed, minimumDistanceInserted;

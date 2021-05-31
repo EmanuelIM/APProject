@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 public class Destination {
     private double x,y;
-    private double weightOfPackages;
+    private ArrayList<Package> requiredPackages;
     private String name;
+
+    public Destination() {
+        requiredPackages = new ArrayList<>();
+    }
 
     public double getX() {
         return x;
@@ -23,13 +27,6 @@ public class Destination {
         this.y = y;
     }
 
-    public double getWeightOfPackages() {
-        return weightOfPackages;
-    }
-
-    public void setWeightOfPackages(double weightOfPackages) {
-        this.weightOfPackages = weightOfPackages;
-    }
 
     public String getName() {
         return name;
@@ -39,4 +36,15 @@ public class Destination {
         this.name = name;
     }
 
+    public ArrayList<Package> getRequiredPackages() {
+        return requiredPackages;
+    }
+
+    public void setRequiredPackages(ArrayList<Package> requiredPackages) {
+        this.requiredPackages = requiredPackages;
+    }
+
+    public void addPackage(Package p){
+        requiredPackages.add(p);
+    }
 }
