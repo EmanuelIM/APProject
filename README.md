@@ -2,8 +2,8 @@
 
 ## Info about the project
 ###### Team formed by :
-* Iacob Marcel-Emanuel (2B4)
-* Logofatu Ionut-Nicusor (2B4)
+* Iacob Marcel-Emanuel (2B4) - responsible for elaborating the algorithm for solving the VRP
+* Logofatu Ionut-Nicusor (2B4) - responsible for developing the desktop interface
 
 Project for Advanced Programming Laboratory (2020 - 2021).  
 Lab coordinator: Irimia Cosmin.
