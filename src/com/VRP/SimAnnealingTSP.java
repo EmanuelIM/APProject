@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Algorithm {
+public class SimAnnealingTSP {
     //Returns the euclidean distance between 2 points in 2D
     double euclideanDistance(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
@@ -26,13 +26,13 @@ public class Algorithm {
         Random rand = new Random();
         firstPosition = rand.nextInt(dimension) + 1;
         secondPosition = rand.nextInt(dimension) + 1;
-        if(firstPosition >= dimension){
-            firstPosition --;
+        if (firstPosition >= dimension) {
+            firstPosition--;
         }
-        if(secondPosition >= dimension){
+        if (secondPosition >= dimension) {
             secondPosition--;
         }
-        if(firstPosition > secondPosition){
+        if (firstPosition > secondPosition) {
             int auxSwap = firstPosition;
             firstPosition = secondPosition;
             secondPosition = auxSwap;
@@ -46,13 +46,13 @@ public class Algorithm {
         Random rand = new Random();
         firstPosition = rand.nextInt(dimension) + 1;
         secondPosition = rand.nextInt(dimension) + 1;
-        if(firstPosition >= dimension){
-            firstPosition --;
+        if (firstPosition >= dimension) {
+            firstPosition--;
         }
-        if(secondPosition >= dimension){
+        if (secondPosition >= dimension) {
             secondPosition--;
         }
-        if(firstPosition > secondPosition){
+        if (firstPosition > secondPosition) {
             int auxSwap = firstPosition;
             firstPosition = secondPosition;
             secondPosition = auxSwap;
@@ -62,23 +62,23 @@ public class Algorithm {
     }
 
     //Swaps two randomly chosen elements in our array
-    void swapInArray(ArrayList<Integer> permutation, int dimension){
+    void swapInArray(ArrayList<Integer> permutation, int dimension) {
         int firstPosition, secondPosition;
         Random rand = new Random();
         firstPosition = rand.nextInt(dimension) + 1;
         secondPosition = rand.nextInt(dimension) + 1;
-        if(firstPosition >= dimension){
-            firstPosition --;
+        if (firstPosition >= dimension) {
+            firstPosition--;
         }
-        if(secondPosition >= dimension){
+        if (secondPosition >= dimension) {
             secondPosition--;
         }
-        if(firstPosition > secondPosition){
+        if (firstPosition > secondPosition) {
             int auxSwap = firstPosition;
             firstPosition = secondPosition;
             secondPosition = auxSwap;
         }
-        Collections.swap(permutation,firstPosition,secondPosition);
+        Collections.swap(permutation, firstPosition, secondPosition);
     }
 
     //Simulated annealing algorithm for the TSP problem
@@ -92,14 +92,14 @@ public class Algorithm {
         ArrayList<Integer> neighbor_inverse = new ArrayList<Integer>();
         ArrayList<Integer> neighbor_insert = new ArrayList<Integer>();
         for (int i = 1; i < dimension; ++i) {
-            if(!finishedList.contains(i)) {
+            if (!finishedList.contains(i)) {
                 candidate.add(i);
             }
         }
-        candidate.add(0,0);
+        candidate.add(0, 0);
         Collections.shuffle(candidate.subList(1, dimension - finishedList.size()));
-        minimumDistance = calculate_cost(dist,candidate,dimension - finishedList.size());
-        double terminationCondition = Math.pow(10,-8);
+        minimumDistance = calculate_cost(dist, candidate, dimension - finishedList.size());
+        double terminationCondition = Math.pow(10, -8);
         while (temperature > terminationCondition) {
             for (int t = 1; t <= 1000; ++t) {
                 minimumDistanceNeighbor = Integer.MAX_VALUE;
@@ -110,34 +110,32 @@ public class Algorithm {
                 neighbor_swap.clear();
                 neighbor_swap.addAll(candidate);
                 reverseArray(neighbor_inverse, dimension - finishedList.size());
-                minimumDistanceInversed = calculate_cost(dist,neighbor_inverse,dimension - finishedList.size());
-                if(minimumDistanceInversed < minimumDistanceNeighbor){
+                minimumDistanceInversed = calculate_cost(dist, neighbor_inverse, dimension - finishedList.size());
+                if (minimumDistanceInversed < minimumDistanceNeighbor) {
                     minimumDistanceNeighbor = minimumDistanceInversed;
                     best_neighbor.clear();
                     best_neighbor.addAll(neighbor_inverse);
                 }
-                insertInArray(neighbor_insert,dimension - finishedList.size());
-                minimumDistanceInserted = calculate_cost(dist,neighbor_insert,dimension - finishedList.size());
-                if(minimumDistanceInserted < minimumDistanceNeighbor){
+                insertInArray(neighbor_insert, dimension - finishedList.size());
+                minimumDistanceInserted = calculate_cost(dist, neighbor_insert, dimension - finishedList.size());
+                if (minimumDistanceInserted < minimumDistanceNeighbor) {
                     minimumDistanceNeighbor = minimumDistanceInserted;
                     best_neighbor.clear();
                     best_neighbor.addAll(neighbor_insert);
                 }
-                swapInArray(neighbor_swap,dimension - finishedList.size());
-                minimumDistanceSwapped = calculate_cost(dist,neighbor_swap,dimension - finishedList.size());
-                if(minimumDistanceSwapped < minimumDistanceNeighbor){
+                swapInArray(neighbor_swap, dimension - finishedList.size());
+                minimumDistanceSwapped = calculate_cost(dist, neighbor_swap, dimension - finishedList.size());
+                if (minimumDistanceSwapped < minimumDistanceNeighbor) {
                     minimumDistanceNeighbor = minimumDistanceSwapped;
                     best_neighbor.clear();
                     best_neighbor.addAll(neighbor_swap);
                 }
-                if(minimumDistanceNeighbor < minimumDistance){
+                if (minimumDistanceNeighbor < minimumDistance) {
                     minimumDistance = minimumDistanceNeighbor;
                     candidate.clear();
                     candidate.addAll(best_neighbor);
-                }
-                else
-                {
-                    if(Math.random() < Math.exp((-Math.abs(minimumDistanceNeighbor - minimumDistance))/temperature)){
+                } else {
+                    if (Math.random() < Math.exp((-Math.abs(minimumDistanceNeighbor - minimumDistance)) / temperature)) {
                         minimumDistance = minimumDistanceNeighbor;
                         candidate.clear();
                         candidate.addAll(best_neighbor);

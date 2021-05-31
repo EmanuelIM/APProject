@@ -34,11 +34,11 @@ public class Car {
         this.carName = carName;
     }
 
-    public void addDestination(Integer i){
+    public void addDestination(Integer i) {
         destinations.add(i);
     }
 
-    public boolean hasDestination(Integer i){
+    public boolean hasDestination(Integer i) {
         return destinations.contains(i);
     }
 
@@ -66,7 +66,7 @@ public class Car {
         this.packagesDelivered = packagesDelivered;
     }
 
-    public void addPackage(Package p){
+    public void addPackage(Package p) {
         packagesDelivered.add(p);
     }
 

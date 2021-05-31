@@ -3,7 +3,17 @@ package com.VRP;
 public class Package {
     private String contents;
     private double weight;
-    private int destination;
+    private Destination destination;
+
+    public Package() {
+
+    }
+
+    public Package(String contents, double weight, Destination destination) {
+        this.contents = contents;
+        this.weight = weight;
+        this.destination = destination;
+    }
 
     public double getWeight() {
         return weight;
@@ -21,11 +31,11 @@ public class Package {
         this.contents = contents;
     }
 
-    public int getDestination() {
+    public Destination getDestination() {
         return destination;
     }
 
-    public void setDestination(int destination) {
+    public void setDestination(Destination destination) {
         this.destination = destination;
     }
 }
