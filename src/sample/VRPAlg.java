@@ -40,7 +40,30 @@ public class VRPAlg {
                 finishedList.add(i);
             }
         }
-        while (finishedList.size() < dimension - 1) {
+        double maxCapacity = -1;
+        for (int i = 0; i < numberOfCars; ++i) {
+            if (c[i].getOriginalCapacity() > maxCapacity) {
+                maxCapacity = c[i].getOriginalCapacity();
+            }
+        }
+        double maxPackage = -1;
+        for (int i = 0; i < dimension; ++i) {
+            ArrayList<Package> packages = d[i].getRequiredPackages();
+            for (int j = 0; j < packages.size(); ++j) {
+                double currentPackageWeight = packages.get(j).getWeight();
+                if (currentPackageWeight > maxPackage) {
+                    maxPackage = currentPackageWeight;
+                }
+            }
+        }
+        boolean canContinue = true;
+        if (maxPackage > maxCapacity) {
+            canContinue = false;
+            Solution solution = new Solution();
+            solution.setLocationName("Impossible,package too big");
+            solutions.add(solution);
+        }
+        while (finishedList.size() < dimension - 1 && canContinue) {
             System.out.println(finishedList);
             ArrayList<Integer> result;
             //We use TSP to calculate the shortest road from the depot through our left destinations
@@ -80,6 +103,7 @@ public class VRPAlg {
                 packages.addAll(packagesCopy);
                 double cost = sa.calculate_cost(costMatrix, c[cars].getDestinations(), c[cars].getDestinations().size());
                 double costOfCar = c[cars].getTotalCost();
+                System.out.print(c[cars].getTotalCost());
                 //We multiply cost by 2 to take in account the car returning to the depot.
                 c[cars].setTotalCost(costOfCar + (cost * 2));
                 //If car was filled, we reset the capacity, set the destination back to the depot to collect other packages..
@@ -95,49 +119,57 @@ public class VRPAlg {
                 }
             }
         }
-        for (int i = 0; i < numberOfCars; ++i) {
-            Solution solution = new Solution();
-            solution.setIdCar(c[i].getId());
-            System.out.println("Car " + (i + 1) + ":");
-            System.out.println("Car capacity: " + c[i].getOriginalCapacity());
-            ArrayList<Package> packages = c[i].getPackagesDelivered();
-            System.out.print("Path for this car: ");
-            if (i == 0) System.out.print("DEPOT ");
-            int packages_delivered = 0;
-            for (Package aPackage : packages) {
-                if (aPackage.getDestination().getIndex() > 1) {
-                    packages_delivered++;
-                    System.out.print(aPackage.getDestination().getIndex());
-                } else System.out.print("DEPOT");
-                System.out.print(" ");
-            }
-            System.out.println("DEPOT");
-            System.out.println("PACKAGES DELIVERED:" + packages_delivered);
-            System.out.println("DEPARTED THE DEPOT");
-            solution.setLocationName("Depot");
-            for (int j = 0; j < packages.size(); ++j) {
-                if (packages.get(j).getDestination().getIndex() != 1) {
-                    solution.setLocationName(packages.get(j).getDestination().getName());
-                    System.out.println("Delivered Package with weight " + packages.get(j).getWeight() + " to destination " + packages.get(j).getDestination().getIndex());
-                } else if (j != 0 && (j + 1) < packages.size()) {
-                    solution.setLocationName("Depot");
-                    System.out.println("RETURNED TO DEPOT TO GET OTHER PACKAGES...");
+        if (canContinue) {
+            for (int i = 0; i < numberOfCars; ++i) {
+                Solution solution = new Solution();
+                solution.setIdCar(c[i].getId());
+                System.out.println("Car " + (i + 1) + ":");
+                System.out.println("Car capacity: " + c[i].getOriginalCapacity());
+                ArrayList<Package> packages = c[i].getPackagesDelivered();
+                System.out.print("Path for this car: ");
+                if (i == 0) System.out.print("DEPOT ");
+                int packages_delivered = 0;
+                for (Package aPackage : packages) {
+                    if (aPackage.getDestination().getIndex() > 1) {
+                        packages_delivered++;
+                        System.out.print(aPackage.getDestination().getIndex());
+                    } else System.out.print("DEPOT");
+                    System.out.print(" ");
                 }
+                System.out.println("DEPOT");
+                System.out.println("PACKAGES DELIVERED:" + packages_delivered);
+                System.out.println("DEPARTED THE DEPOT");
+                if (packages_delivered > 0) {
+                    solution.setLocationName("Depot");
+                }
+                for (int j = 0; j < packages.size(); ++j) {
+                    if (packages.get(j).getDestination().getIndex() != 1) {
+                        solution.setLocationName(packages.get(j).getDestination().getName());
+                        System.out.println("Delivered Package with weight " + packages.get(j).getWeight() + " to destination " + packages.get(j).getDestination().getIndex());
+                    } else if (j != 0 && (j + 1) < packages.size()) {
+                        solution.setLocationName("Depot");
+                        System.out.println("RETURNED TO DEPOT TO GET OTHER PACKAGES...");
+                    }
+                }
+                if (packages_delivered > 0) {
+                    solution.setLocationName("Depot");
+                } else {
+                    solution.setLocationName("Car stays at depot");
+                }
+                System.out.println("RETURNED TO THE DEPOT.");
+                costAtEnd += c[i].getTotalCost();
+                System.out.println("Total kilometers for this car: " + c[i].getTotalCost());
+                System.out.println();
+                solution.setTotalCost(c[i].getTotalCost());
+                solution.setTotalAmount((c[i].getTotalCost() / 10) * 3);
+                solutions.add(solution);
             }
-            solution.setLocationName("Depot");
-            System.out.println("RETURNED TO THE DEPOT.");
-            costAtEnd += c[i].getTotalCost();
-            System.out.println("Total kilometers for this car: " + c[i].getTotalCost());
-            System.out.println();
-            solution.setTotalCost(c[i].getTotalCost());
-            solution.setTotalAmount(c[i].getTotalCost()*3);
-            solutions.add(solution);
+            DecimalFormat ft;
+            double price = ((costAtEnd) / 10) * 3;
+            ft = new DecimalFormat("$###,###.##");
+            System.out.println("Number of kilometers:" + costAtEnd);
+            System.out.println("Gasoline price (at 3$/liter and 10L / 100km medium fuel consumption): " + ft.format(price));
         }
-        DecimalFormat ft;
-        double price = ((costAtEnd) / 10) * 3;
-        ft = new DecimalFormat("$###,###.##");
-        System.out.println("Number of kilometers:" + costAtEnd);
-        System.out.println("Gasoline price (at 3$/liter and 10L / 100km medium fuel consumption): " + ft.format(price));
     }
 }
 

@@ -21,7 +21,7 @@ public class Destination {
         this.index = index;
     }
 
-    public Destination(double x, double y, double weight,String name) {
+    public Destination(double x, double y, double weight, String name) {
         this.x = x;
         this.y = y;
         this.name = name;

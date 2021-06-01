@@ -7,35 +7,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: Green;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ForthSceneController">
-   <children>
-      <AmbientLight layoutX="61.0" layoutY="79.0" lightOn="true">
-         <color>
-            <Color red="0.44397661089897156" green="0.821052610874176" blue="0.0669005811214447" />
-         </color>
-      </AmbientLight>
-      <Label layoutX="178.0" layoutY="14.0" text="These are the results">
-         <font>
-            <Font size="38.0" />
-         </font>
-      </Label>
-      <TableView fx:id="car" layoutX="50.0" layoutY="106.0" prefHeight="202.0" prefWidth="617.0">
-         <columns>
-            <TableColumn fx:id="carIdRez" prefWidth="236.00000762939453" text="Car id" />
-            <TableColumn fx:id="locname" prefWidth="379.9999938964844" text="Locations names" />
-         </columns>
-      </TableView>
-      <TableView fx:id="costTable" layoutX="53.0" layoutY="403.0" prefHeight="75.0" prefWidth="611.0">
-        <columns>
-          <TableColumn fx:id="numKm" prefWidth="179.20001983642578" style="-fx-alignment: CENTER;" text="Number of kilometers" />
-          <TableColumn fx:id="price" prefWidth="431.1999206542969" style="-fx-alignment: CENTER;" text="Gasoline price (at 3$/liter and 10L / 100km medium fuel consumption)" />
-        </columns>
-      </TableView>
-      <Label layoutX="303.0" layoutY="325.0" text="Costs">
-         <font>
-            <Font size="39.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="700.0" style="-fx-background-color: Green;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ForthSceneController">
+    <children>
+        <Button layoutX="270.0" layoutY="500.0" mnemonicParsing="false" onAction="#switchToScene1"
+                text=" Go back to main menu"/>
+        <AmbientLight layoutX="61.0" layoutY="79.0" lightOn="true">
+            <color>
+                <Color red="0.44397661089897156" green="0.821052610874176" blue="0.0669005811214447"/>
+            </color>
+        </AmbientLight>
+        <Label layoutX="108.0" layoutY="14.0" text="Here are the routes your car should take..">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Label>
+        <TableView fx:id="car" layoutX="50.0" layoutY="106.0" prefHeight="202.0" prefWidth="617.0">
+            <columns>
+                <TableColumn fx:id="carIdRez" prefWidth="236.00000762939453" text="Car Number"/>
+                <TableColumn fx:id="locname" prefWidth="379.9999938964844" text="Route"/>
+            </columns>
+        </TableView>
+
+        <TableView fx:id="costTable" layoutX="53.0" layoutY="403.0" prefHeight="75.0" prefWidth="611.0">
+            <columns>
+                <TableColumn fx:id="numKm" prefWidth="179.20001983642578" style="-fx-alignment: CENTER;"
+                             text="Number of kilometers"/>
+                <TableColumn fx:id="price" prefWidth="431.1999206542969" style="-fx-alignment: CENTER;"
+                             text="Gasoline price (at 3$/liter and 10L / 100km medium fuel consumption)"/>
+            </columns>
+        </TableView>
+        <Label layoutX="303.0" layoutY="325.0" text="Costs">
+            <font>
+                <Font size="39.0"/>
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

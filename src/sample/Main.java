@@ -7,14 +7,18 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
+import javax.swing.*;
 import java.awt.*;
+
 
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
         Scene scene1 = new Scene(root);
+        primaryStage.setTitle("Vehicle Routing Problem Solver Project");
         primaryStage.setScene(scene1);
         primaryStage.show();
     }

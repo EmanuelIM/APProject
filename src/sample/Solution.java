@@ -9,7 +9,7 @@ public class Solution {
     private double totalCost;
     private double totalAmount;
 
-    public Solution(int idCar, List<String> locationName, double totalCost,double totalAmount) {
+    public Solution(int idCar, List<String> locationName, double totalCost, double totalAmount) {
         this.idCar = idCar;
         this.locationName = locationName;
         this.totalCost = totalCost;

@@ -12,7 +12,7 @@ public class Reader {
     private Car[] c;
 
     public void readValues() throws FileNotFoundException {
-        File myObj = new File("C:\\xampp\\htdocs\\BetRat\\APProject\\src\\sample\\Destinations.txt");
+        File myObj = new File("src/sample/Destinations.txt");
         Scanner myScanner = new Scanner(myObj);
         numberOfCars = 0;
         dimension = 0;
@@ -29,15 +29,14 @@ public class Reader {
             double w = Double.parseDouble(words[3]);
             boolean ok = false;
             int foundIndex = 0;
-            for(int i = 0; i < currentIndex && !ok; ++i)
-            {
-                if(d[i].getX() == x && d[i].getY() == y) {
+            for (int i = 0; i < currentIndex && !ok; ++i) {
+                if (d[i].getX() == x && d[i].getY() == y) {
                     ok = true;
                     foundIndex = i;
                 }
             }
-            if(!ok) {
-                currentIndex ++;
+            if (!ok) {
+                currentIndex++;
                 d[currentIndex - 1] = new Destination();
                 d[currentIndex - 1].setName(name);
                 d[currentIndex - 1].setX(x);
@@ -46,16 +45,15 @@ public class Reader {
                 Package p = new Package();
                 p.setWeight(w);
                 d[currentIndex - 1].addPackage(p);
-                dimension ++;
-            }
-            else{
+                dimension++;
+            } else {
                 Package p = new Package();
                 p.setWeight(w);
                 d[foundIndex].addPackage(p);
             }
         }
         myScanner.close();
-        File obj = new File("C:\\xampp\\htdocs\\BetRat\\APProject\\src\\sample\\Cars.txt");
+        File obj = new File("src/sample/Cars.txt");
         Scanner scanner = new Scanner(obj);
         c = new Car[100];
         while (scanner.hasNextLine()) {

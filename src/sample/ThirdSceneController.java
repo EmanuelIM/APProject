@@ -28,14 +28,14 @@ public class ThirdSceneController implements Initializable {
     private Scene scene;
     private Parent root;
 
-    private int id=0;
+    private int id = 0;
 
 
-    public void switchToScene4(ActionEvent event)throws IOException {
-        FileWriter fstream = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
+    public void switchToScene4(ActionEvent event) throws IOException {
+        FileWriter fstream = new FileWriter("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
         BufferedWriter info = new BufferedWriter(fstream);
         ObservableList<Car> cars = car.getItems();
-        for(Car cartmp : cars){
+        for (Car cartmp : cars) {
             info.write(Integer.toString(cartmp.getId()));
             info.write(" ");
             info.write(Double.toString(cartmp.getOriginalCapacity()));
@@ -49,13 +49,13 @@ public class ThirdSceneController implements Initializable {
         System.out.println("Ruleaza....");
         vrp.solveVRP(solution);
         System.out.println("A rulat");
-        FileWriter ostream = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Solution.txt");
+        FileWriter ostream = new FileWriter("src/sample/Solution.txt");
         BufferedWriter writer = new BufferedWriter(ostream);
         ObservableList<Solution> solutions = solution;
-        for(Solution solution1 : solutions){
+        for (Solution solution1 : solutions) {
             writer.write(Integer.toString(solution1.getIdCar()));
             writer.write(" ");
-            for(String s : solution1.getLocationName()){
+            for (String s : solution1.getLocationName()) {
                 writer.write(s);
                 writer.write(" ");
             }
@@ -66,7 +66,7 @@ public class ThirdSceneController implements Initializable {
         }
         writer.close();
         root = FXMLLoader.load(getClass().getResource("Scene4.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -94,7 +94,7 @@ public class ThirdSceneController implements Initializable {
         weight.setCellValueFactory(new PropertyValueFactory<>("originalCapacity"));
     }
 
-    public void addRecord(){
+    public void addRecord() {
         Car newCar = new Car();
         id++;
         newCar.setId(id);

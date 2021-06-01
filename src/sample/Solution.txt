@@ -1,5 +1,2 @@
-1 Depot Mirel Ion Depot 2536.835067766867 7610.5052033006
-2 Depot Depot 0.0 0.0
-3 Depot Giorgel Alexandru Depot 1929.95598214965 5789.8679464489505
-4 Depot Giorgel Nicu Depot 744.9817296004406 2234.945188801322
-5 Depot Ana Depot 0.0 0.0
+1 Car stays at depot 0.0 0.0
+2 Depot Eduard Depot Emicu Depot 161.24515496597098 48.373546489791295

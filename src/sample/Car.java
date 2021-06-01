@@ -24,8 +24,6 @@ public class Car {
     }
 
 
-
-
     public double getCapacity() {
         return capacity;
     }

@@ -1,9 +1,10 @@
 package sample;
 
 public class TotalCost {
-    private double km, cost;
+    private double km;
+    private String cost;
 
-    public TotalCost(double km, double cost) {
+    public TotalCost(double km, String cost) {
         this.km = km;
         this.cost = cost;
     }
@@ -16,11 +17,12 @@ public class TotalCost {
         this.km = km;
     }
 
-    public double getCost() {
+
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 }
