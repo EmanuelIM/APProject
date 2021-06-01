@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: Green;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ForthSceneController">
+   <children>
+      <AmbientLight layoutX="61.0" layoutY="79.0" lightOn="true">
+         <color>
+            <Color red="0.44397661089897156" green="0.821052610874176" blue="0.0669005811214447" />
+         </color>
+      </AmbientLight>
+      <Label layoutX="152.0" layoutY="29.0" text="These are the results">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <TableView fx:id="car" layoutX="60.0" layoutY="99.0" prefHeight="202.0" prefWidth="503.0">
+         <columns>
+            <TableColumn fx:id="carIdRez" prefWidth="260.00006103515625" text="Car id" />
+            <TableColumn fx:id="locname" prefWidth="239.2000732421875" text="Locations names" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
