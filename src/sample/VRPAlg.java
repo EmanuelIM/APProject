@@ -142,18 +142,22 @@ public class VRPAlg {
                 if (packages_delivered > 0) {
                     solution.setLocationName("Depot");
                 }
+                int returned = 0;
                 for (int j = 0; j < packages.size(); ++j) {
                     if (packages.get(j).getDestination().getIndex() != 1) {
+                        if(returned == 1) returned = 0;
                         solution.setLocationName(packages.get(j).getDestination().getName());
                         System.out.println("Delivered Package with weight " + packages.get(j).getWeight() + " to destination " + packages.get(j).getDestination().getIndex());
                     } else if (j != 0 && (j + 1) < packages.size()) {
-                        solution.setLocationName("Depot");
+                        if(returned == 0) returned = 1;
+                        solution.setLocationName("Returned");
                         System.out.println("RETURNED TO DEPOT TO GET OTHER PACKAGES...");
                     }
                 }
-                if (packages_delivered > 0) {
-                    solution.setLocationName("Depot");
-                } else {
+                if (packages_delivered > 0 && returned == 0) {
+                    solution.setLocationName("Returned");
+                }
+                if(packages_delivered == 0){
                     solution.setLocationName("Car stays at depot");
                 }
                 System.out.println("RETURNED TO THE DEPOT.");

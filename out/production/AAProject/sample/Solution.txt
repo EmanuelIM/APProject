@@ -1,2 +1,5 @@
-1 Depot Eduard Depot 0.0 0.0
-2 Depot Emicu Depot 0.0 0.0
+1 Depot Nicu Ioana Cristina Returned Mirel Returned Ion Returned 4084.8948381749856 1225.4684514524956
+2 Car stays at depot 0.0 0.0
+3 Car stays at depot 0.0 0.0
+4 Car stays at depot 0.0 0.0
+5 Depot Sorin Returned Emi Returned 2131.4737754924317 639.4421326477295
