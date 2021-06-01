@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.ObservableList;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -16,7 +18,7 @@ public class VRPAlg {
         this.c = c;
     }
 
-    public void solveVRP() {
+    public void solveVRP(ObservableList<Solution> solutions) {
         //We declare a list which keeps all the destinations we already visited.
         ArrayList<Integer> finishedList = new ArrayList<>();
         SimAnnealingTSP sa = new SimAnnealingTSP();
@@ -39,6 +41,7 @@ public class VRPAlg {
             }
         }
         while (finishedList.size() < dimension - 1) {
+            System.out.println(finishedList);
             ArrayList<Integer> result;
             //We use TSP to calculate the shortest road from the depot through our left destinations
             //We then get the current car and try to fit in as many packages as possible in it
@@ -53,6 +56,7 @@ public class VRPAlg {
                 for (int j = 0; j < packages.size() && ok; ++j) {
                     double currentCarCapacity = c[cars].getCapacity();
                     double currentPackageWeight = packages.get(j).getWeight();
+                    System.out.println(currentCarCapacity + " " + currentPackageWeight);
                     //If the package fits, we add the destination and the package to our car
                     if (currentPackageWeight <= currentCarCapacity) {
                         packages.get(j).setDestination(d[result.get(i)]);
@@ -92,6 +96,8 @@ public class VRPAlg {
             }
         }
         for (int i = 0; i < numberOfCars; ++i) {
+            Solution solution = new Solution();
+            solution.setIdCar(c[i].getId());
             System.out.println("Car " + (i + 1) + ":");
             System.out.println("Car capacity: " + c[i].getOriginalCapacity());
             ArrayList<Package> packages = c[i].getPackagesDelivered();
@@ -108,20 +114,26 @@ public class VRPAlg {
             System.out.println("DEPOT");
             System.out.println("PACKAGES DELIVERED:" + packages_delivered);
             System.out.println("DEPARTED THE DEPOT");
+            solution.setLocationName("Depot");
             for (int j = 0; j < packages.size(); ++j) {
                 if (packages.get(j).getDestination().getIndex() != 1) {
+                    solution.setLocationName(packages.get(j).getDestination().getName());
                     System.out.println("Delivered Package with weight " + packages.get(j).getWeight() + " to destination " + packages.get(j).getDestination().getIndex());
                 } else if (j != 0 && (j + 1) < packages.size()) {
+                    solution.setLocationName("Depot");
                     System.out.println("RETURNED TO DEPOT TO GET OTHER PACKAGES...");
                 }
             }
+            solution.setLocationName("Depot");
             System.out.println("RETURNED TO THE DEPOT.");
             costAtEnd += c[i].getTotalCost();
             System.out.println("Total kilometers for this car: " + c[i].getTotalCost());
             System.out.println();
+            solution.setTotalCost(c[i].getTotalCost());
+            solutions.add(solution);
         }
         DecimalFormat ft;
-        double price = costAtEnd / 10;
+        double price = ((costAtEnd) / 10) * 3;
         ft = new DecimalFormat("$###,###.##");
         System.out.println("Number of kilometers:" + costAtEnd);
         System.out.println("Gasoline price (at 3$/liter and 10L / 100km medium fuel consumption): " + ft.format(price));

@@ -32,7 +32,7 @@ public class ThirdSceneController implements Initializable {
 
 
     public void switchToScene4(ActionEvent event)throws IOException {
-        FileWriter fstream = new FileWriter ("D:/AAProject/src/sample/Cars.txt");
+        FileWriter fstream = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
         BufferedWriter info = new BufferedWriter(fstream);
         ObservableList<Car> cars = car.getItems();
         for(Car cartmp : cars){
@@ -42,6 +42,27 @@ public class ThirdSceneController implements Initializable {
             info.write("\n");
         }
         info.close();
+        Reader r = new Reader();
+        r.readValues();
+        VRPAlg vrp = new VRPAlg(r.getDimension(), r.getNumberOfCars(), r.getD(), r.getC());
+        ObservableList<Solution> solution = FXCollections.observableArrayList();
+        System.out.println("Ruleaza....");
+        vrp.solveVRP(solution);
+        System.out.println("A rulat");
+        FileWriter ostream = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Solution.txt");
+        BufferedWriter writer = new BufferedWriter(ostream);
+        ObservableList<Solution> solutions = solution;
+        for(Solution solution1 : solutions){
+            writer.write(Integer.toString(solution1.getIdCar()));
+            writer.write(" ");
+            for(String s : solution1.getLocationName()){
+                writer.write(s);
+                writer.write(" ");
+            }
+            writer.write(Double.toString(solution1.getTotalCost()));
+            writer.write("\n");
+        }
+        writer.close();
         root = FXMLLoader.load(getClass().getResource("Scene4.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

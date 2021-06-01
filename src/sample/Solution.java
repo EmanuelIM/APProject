@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
-    private String idCar;
+    private int idCar;
     private List<String> locationName = new ArrayList<>();
+    private double totalCost;
 
+    public Solution(int idCar, List<String> locationName, double totalCost) {
+        this.idCar = idCar;
+        this.locationName = locationName;
+        this.totalCost = totalCost;
+    }
 
-    public Solution(String carid, List<String> locationName) {
+    public Solution(int carid, List<String> locationName) {
         this.idCar = carid;
         this.locationName = locationName;
     }
@@ -16,20 +22,24 @@ public class Solution {
     public Solution() {
     }
 
-    public String getIdCar() {
+    public int getIdCar() {
         return idCar;
     }
 
-    public void setIdCar(String idCar) {
+    public void setIdCar(int idCar) {
         this.idCar = idCar;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
     public void setLocationName(List<String> locationName) {
         this.locationName = locationName;
-    }
-
-    public void setCarid(String carid) {
-        this.idCar = carid;
     }
 
     public List<String> getLocationName() {

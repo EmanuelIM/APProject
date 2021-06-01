@@ -32,7 +32,7 @@ public class FifthSceneController implements Initializable{
 
 
     public void switchToScene4(ActionEvent event)throws IOException {
-        FileWriter fstream = new FileWriter ("D:/AAProject/src/sample/Cars.txt");
+        FileWriter fstream = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
         BufferedWriter info = new BufferedWriter(fstream);
         ObservableList<Car> cars = car.getItems();
         for(Car cartmp : cars){
@@ -43,7 +43,7 @@ public class FifthSceneController implements Initializable{
         }
         info.close();
 
-        FileWriter fstreamD = new FileWriter ("D:/AAProject/src/sample/Destinations.txt");
+        FileWriter fstreamD = new FileWriter ("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Destinations.txt");
         BufferedWriter infoDes = new BufferedWriter(fstreamD);
         ObservableList<Destination> destinations = destination.getItems();
         for(Destination destination : destinations){

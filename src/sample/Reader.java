@@ -12,43 +12,62 @@ public class Reader {
     private Car[] c;
 
     public void readValues() throws FileNotFoundException {
-        File myObj = new File("src/com/VRP/input.txt");
+        File myObj = new File("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Destinations.txt");
         Scanner myScanner = new Scanner(myObj);
-        dimension = myScanner.nextInt();
-        d = new Destination[dimension + 1];
+        numberOfCars = 0;
+        dimension = 0;
+        int currentIndex = 0;
+        d = new Destination[100];
         //Reading all our required info..
         //Reading our destination coordinates (1 is our depot)
         while (myScanner.hasNextLine()) {
-            int index = myScanner.nextInt();
-            d[index - 1] = new Destination();
-            d[index - 1].setX(myScanner.nextDouble());
-            d[index - 1].setY(myScanner.nextDouble());
-            d[index - 1].setIndex(index);
-            if (index == dimension) break;
-        }
-        //Reading required packages for each destination
-        while (myScanner.hasNextLine()) {
-            int index = myScanner.nextInt();
-            int numberOfPackages = myScanner.nextInt();
-            for (int i = 0; i < numberOfPackages; ++i) {
-                Package p = new Package();
-                p.setWeight(myScanner.nextDouble());
-                d[index - 1].addPackage(p);
+            String line = myScanner.nextLine();
+            String[] words = line.split(" ");
+            String name = words[0];
+            double x = Double.parseDouble(words[1]);
+            double y = Double.parseDouble(words[2]);
+            double w = Double.parseDouble(words[3]);
+            boolean ok = false;
+            int foundIndex = 0;
+            for(int i = 0; i < currentIndex && !ok; ++i)
+            {
+                if(d[i].getX() == x && d[i].getY() == y) {
+                    ok = true;
+                    foundIndex = i;
+                }
             }
-            if (index == dimension) break;
-        }
-        //Reading cars and dimensions
-        numberOfCars = myScanner.nextInt();
-        c = new Car[numberOfCars];
-        while (myScanner.hasNextLine()) {
-            int index = myScanner.nextInt();
-            double capacity = myScanner.nextDouble();
-            c[index - 1] = new Car();
-            c[index - 1].setCapacity(capacity);
-            c[index - 1].setOriginalCapacity(capacity);
-            if (index == numberOfCars) break;
+            if(!ok) {
+                currentIndex ++;
+                d[currentIndex - 1] = new Destination();
+                d[currentIndex - 1].setName(name);
+                d[currentIndex - 1].setX(x);
+                d[currentIndex - 1].setY(y);
+                d[currentIndex - 1].setIndex(currentIndex);
+                Package p = new Package();
+                p.setWeight(w);
+                d[currentIndex - 1].addPackage(p);
+                dimension ++;
+            }
+            else{
+                Package p = new Package();
+                p.setWeight(w);
+                d[foundIndex].addPackage(p);
+            }
         }
         myScanner.close();
+        File obj = new File("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
+        Scanner scanner = new Scanner(obj);
+        c = new Car[100];
+        while (scanner.hasNextLine()) {
+            numberOfCars++;
+            String line = scanner.nextLine();
+            String[] words = line.split(" ");
+            c[numberOfCars - 1] = new Car();
+            c[numberOfCars - 1].setId(Integer.parseInt(words[0]));
+            c[numberOfCars - 1].setCapacity(Double.parseDouble(words[1]));
+            c[numberOfCars - 1].setOriginalCapacity(Double.parseDouble(words[1]));
+        }
+        scanner.close();
     }
 
     public int getNumberOfCars() {
