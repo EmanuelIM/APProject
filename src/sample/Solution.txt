@@ -1,3 +1,5 @@
-1 Depot Georgel Georgel Georgel Georgel Depot Paul Depot 84.8528137423857
-2 Depot Mirel Mirel Ionut Ion Ion Ion Ion Depot 437.23818849531585
-3 Depot Alexandru Sorin Sorin Sorin Georgel Paul Depot 383.71134531536484
+1 Depot Mirel Ion Depot 2536.835067766867 7610.5052033006
+2 Depot Depot 0.0 0.0
+3 Depot Giorgel Alexandru Depot 1929.95598214965 5789.8679464489505
+4 Depot Giorgel Nicu Depot 744.9817296004406 2234.945188801322
+5 Depot Ana Depot 0.0 0.0

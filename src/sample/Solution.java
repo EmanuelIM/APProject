@@ -7,16 +7,31 @@ public class Solution {
     private int idCar;
     private List<String> locationName = new ArrayList<>();
     private double totalCost;
+    private double totalAmount;
 
-    public Solution(int idCar, List<String> locationName, double totalCost) {
+    public Solution(int idCar, List<String> locationName, double totalCost,double totalAmount) {
         this.idCar = idCar;
         this.locationName = locationName;
         this.totalCost = totalCost;
+        this.totalAmount = totalAmount;
+    }
+
+    public Solution(double totalCost, double totalAmount) {
+        this.totalCost = totalCost;
+        this.totalAmount = totalAmount;
     }
 
     public Solution(int carid, List<String> locationName) {
         this.idCar = carid;
         this.locationName = locationName;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public Solution() {

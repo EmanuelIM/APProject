@@ -60,6 +60,8 @@ public class ThirdSceneController implements Initializable {
                 writer.write(" ");
             }
             writer.write(Double.toString(solution1.getTotalCost()));
+            writer.write(" ");
+            writer.write(Double.toString(solution1.getTotalAmount()));
             writer.write("\n");
         }
         writer.close();

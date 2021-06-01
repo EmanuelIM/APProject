@@ -12,7 +12,7 @@ public class Reader {
     private Car[] c;
 
     public void readValues() throws FileNotFoundException {
-        File myObj = new File("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Destinations.txt");
+        File myObj = new File("C:\\xampp\\htdocs\\BetRat\\APProject\\src\\sample\\Destinations.txt");
         Scanner myScanner = new Scanner(myObj);
         numberOfCars = 0;
         dimension = 0;
@@ -55,7 +55,7 @@ public class Reader {
             }
         }
         myScanner.close();
-        File obj = new File("C:\\Users\\Iacob Emanuel\\Documents\\GitHub\\APProject\\src\\sample\\Cars.txt");
+        File obj = new File("C:\\xampp\\htdocs\\BetRat\\APProject\\src\\sample\\Cars.txt");
         Scanner scanner = new Scanner(obj);
         c = new Car[100];
         while (scanner.hasNextLine()) {

@@ -130,6 +130,7 @@ public class VRPAlg {
             System.out.println("Total kilometers for this car: " + c[i].getTotalCost());
             System.out.println();
             solution.setTotalCost(c[i].getTotalCost());
+            solution.setTotalAmount(c[i].getTotalCost()*3);
             solutions.add(solution);
         }
         DecimalFormat ft;
