@@ -32,6 +32,26 @@ The neighbor of a candidate solution is defined as the minimum of the inverse, i
 
 These operators are applied to every candidate solution that we get. The cost of the edges between the nodes chosen is calculated, then the smallest of the three is compared with the current solution.
 
+###### Setup
+- Initial temperature T: 100
+- Number of iterations t: 1000
+- Termination condition: 10 ^ (-8)
+- Temperature modification: T = T * 0.99
+
+## Proposed solution:
+Using the aforementioned algorithm, we can implement it in our VRP algorithm so it can help us solve it.
+Here are the steps simply explained:
+- We start with the first car.
+- Using TSP, we determine the shortest path it can take from the depot (this is destination 1 at all times) to all other destinations (and its cost).
+- We fit in as many packages as possible for the destinations in the car's path.
+- We remove the destinations which have all the packages delivered.
+- The cost of this trip will be equal to the cost of visiting all the possible destination times two (counting returning to the depot to get other packages).
+- We proceed with the next car.
+- Using TSP, we determine the shortest path it can take from the depot to all other unfinished destinations.
+- We cycle through all cars until all the packages are delivered.  
+
+This solution guarantees that the cars will take the shortest path possible (determined by SA) at any time.
+
 ## JavaFX
  For desktop interface we used JavaFx because we can manipulate data easily. 
  
@@ -72,22 +92,4 @@ These operators are applied to every candidate solution that we get. The cost of
   
   * As you can see, here is the solution and the total amount that should be spent depending on how many kilometers the cars have traveled. 
 
-###### Setup
-- Initial temperature T: 100
-- Number of iterations t: 1000
-- Termination condition: 10 ^ (-8)
-- Temperature modification: T = T * 0.99
 
-## Proposed solution:
-Using the aforementioned algorithm, we can implement it in our VRP algorithm so it can help us solve it.
-Here are the steps simply explained:
-- We start with the first car.
-- Using TSP, we determine the shortest path it can take from the depot (this is destination 1 at all times) to all other destinations (and its cost).
-- We fit in as many packages as possible for the destinations in the car's path.
-- We remove the destinations which have all the packages delivered.
-- The cost of this trip will be equal to the cost of visiting all the possible destination times two (counting returning to the depot to get other packages).
-- We proceed with the next car.
-- Using TSP, we determine the shortest path it can take from the depot to all other unfinished destinations.
-- We cycle through all cars until all the packages are delivered.  
-
-This solution guarantees that the cars will take the shortest path possible (determined by SA) at any time.
