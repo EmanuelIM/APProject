@@ -1,5 +1,5 @@
-1 Depot Nicu Ioana Cristina Returned Mirel Returned Ion Returned 4084.8948381749856 1225.4684514524956
+1 Depot Sorin Returned 1576.119728647329 472.8359185941987
 2 Car stays at depot 0.0 0.0
-3 Car stays at depot 0.0 0.0
+3 Depot Emi Cristina Ioana Giorgel Returned Mirel Returned 2029.6247722653407 608.8874316796023
 4 Car stays at depot 0.0 0.0
-5 Depot Sorin Returned Emi Returned 2131.4737754924317 639.4421326477295
+5 Depot Ana Returned 649.6632879726519 194.89898639179557

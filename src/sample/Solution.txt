@@ -1,5 +1,5 @@
-1 Depot Mirel Ana Returned Alexandru Returned 1443.2095847836486 432.96287543509453
-2 Depot Ion Returned 639.3917915484749 191.81753746454245
-3 Depot Nicu Returned 564.3676959583667 169.31030878751
-4 Depot Sorin Emi Returned 62.257066054567936 18.677119816370382
-5 Car stays at depot 0.0 0.0
+1 Depot Sorin Returned 1576.119728647329 472.8359185941987
+2 Car stays at depot 0.0 0.0
+3 Depot Emi Cristina Ioana Giorgel Returned Mirel Returned 2029.6247722653407 608.8874316796023
+4 Car stays at depot 0.0 0.0
+5 Depot Ana Returned 649.6632879726519 194.89898639179557
